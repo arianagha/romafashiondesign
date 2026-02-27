@@ -578,8 +578,22 @@ a {
     min-height: 1.2em;
 }
 
-.h-captcha {
-    margin-bottom: 8px;
+/* Hide reCAPTCHA v3 badge — attribution text shown near form instead */
+.grecaptcha-badge {
+    visibility: hidden !important;
+}
+
+.recaptcha-notice {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.7rem;
+    color: #999;
+    margin-top: 16px;
+    line-height: 1.5;
+}
+
+.recaptcha-notice a {
+    color: #777;
+    text-decoration: underline;
 }
 
 /* --- Footer --- */

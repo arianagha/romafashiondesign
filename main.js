@@ -144,7 +144,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- Contact Form (Web3Forms + hCaptcha) ---
+    // --- Contact Form (Web3Forms + reCAPTCHA v3) ---
+    const RECAPTCHA_SITE_KEY = '6LfFGXosAAAAAJzUVPQ5lQ8M5q-h9treqBjNhC-g';
     const contactForm = document.getElementById('contact-form');
     const formSuccess = document.querySelector('.form-success');
     const formError = document.querySelector('.form-error');
@@ -166,6 +167,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (formError) formError.textContent = '';
 
             try {
+                // Get invisible reCAPTCHA v3 token
+                const token = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'contact' });
+                document.getElementById('recaptchaResponse').value = token;
+
                 const formData = new FormData(contactForm);
                 const response = await fetch('https://api.web3forms.com/submit', {
                     method: 'POST',

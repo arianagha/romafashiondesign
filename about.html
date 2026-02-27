@@ -95,13 +95,12 @@
                         <textarea id="message" name="message" class="form-textarea" required></textarea>
                     </div>
 
-                    <!-- hCaptcha widget -->
-                    <div class="form-group">
-                        <div class="h-captcha" data-captcha="true"></div>
-                    </div>
+                    <!-- reCAPTCHA v3 token (invisible — no puzzle) -->
+                    <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
 
                     <button type="submit" class="form-submit">Submit</button>
                     <p class="form-error"></p>
+                    <p class="recaptcha-notice">Protected by reCAPTCHA. Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
                 </form>
 
                 <div class="form-success" id="thankyou">Thank you! Your message has been sent.</div>
@@ -114,7 +113,7 @@
         <p>&copy; 2025 Roshanak Marefat. All rights reserved.</p>
     </footer>
 
-    <script src="https://web3forms.com/client/script.js" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfFGXosAAAAAJzUVPQ5lQ8M5q-h9treqBjNhC-g"></script>
     <script src="main.js"></script>
 </body>
 </html>
