@@ -1,0 +1,9 @@
+# Exclude folders not used by the website
+All Photos/
+Generic AI Generated/
+website-sample/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
