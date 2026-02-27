@@ -144,15 +144,49 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- Contact Form ---
-    const contactForm = document.querySelector('.contact-form');
+    // --- Contact Form (Web3Forms + hCaptcha) ---
+    const contactForm = document.getElementById('contact-form');
     const formSuccess = document.querySelector('.form-success');
+    const formError = document.querySelector('.form-error');
+
+    // Show thank-you if redirected back after submission
+    if (window.location.hash === '#thankyou' && contactForm && formSuccess) {
+        contactForm.style.display = 'none';
+        formSuccess.classList.add('visible');
+    }
 
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            contactForm.style.display = 'none';
-            if (formSuccess) formSuccess.classList.add('visible');
+
+            const submitBtn = contactForm.querySelector('.form-submit');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            if (formError) formError.textContent = '';
+
+            try {
+                const formData = new FormData(contactForm);
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    contactForm.style.display = 'none';
+                    if (formSuccess) formSuccess.classList.add('visible');
+                    contactForm.reset();
+                } else {
+                    if (formError) formError.textContent = 'Something went wrong. Please try again.';
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }
+            } catch (err) {
+                if (formError) formError.textContent = 'Connection error. Please try again.';
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
         });
     }
 

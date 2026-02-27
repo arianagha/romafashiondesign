@@ -64,7 +64,16 @@
             <div class="contact-container">
                 <h2 class="contact-title fade-in">Get In Touch</h2>
 
-                <form class="contact-form fade-in" action="#" method="POST">
+                <form class="contact-form fade-in" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                    <!-- Web3Forms Access Key — replace with your key -->
+                    <input type="hidden" name="access_key" value="5ba419bb-b075-470f-831e-90cc0bc95825">
+                    <input type="hidden" name="subject" value="New message from romafashiondesign.com">
+                    <input type="hidden" name="from_name" value="ROMA Portfolio Contact">
+                    <input type="hidden" name="redirect" value="https://romafashiondesign.com/about.html#thankyou">
+
+                    <!-- Honeypot spam trap (hidden from real users) -->
+                    <input type="checkbox" name="botcheck" style="display: none;">
+
                     <div class="form-group">
                         <label class="form-label" for="name">Name</label>
                         <input type="text" id="name" name="name" class="form-input" required>
@@ -77,10 +86,17 @@
                         <label class="form-label" for="message">Message</label>
                         <textarea id="message" name="message" class="form-textarea" required></textarea>
                     </div>
+
+                    <!-- hCaptcha widget -->
+                    <div class="form-group">
+                        <div class="h-captcha" data-captcha="true"></div>
+                    </div>
+
                     <button type="submit" class="form-submit">Submit</button>
+                    <p class="form-error"></p>
                 </form>
 
-                <div class="form-success">Thank you!</div>
+                <div class="form-success" id="thankyou">Thank you! Your message has been sent.</div>
             </div>
         </section>
     </main>
@@ -90,6 +106,7 @@
         <p>&copy; 2025 Roshanak Marefat. All rights reserved.</p>
     </footer>
 
+    <script src="https://web3forms.com/client/script.js" async defer></script>
     <script src="main.js"></script>
 </body>
 </html>
