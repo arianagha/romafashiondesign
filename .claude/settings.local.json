@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.roshanakmarefat.com)",
+      "Bash(open:*)",
+      "Bash(du:*)",
+      "Bash(gh auth:*)",
+      "Bash(git:*)",
+      "Bash(gh repo:*)",
+      "Bash(gh api:*)",
+      "Bash(dig:*)",
+      "Bash(curl:*)",
+      "WebFetch(domain:romafashiondesign.com)"
+    ]
+  }
+}
